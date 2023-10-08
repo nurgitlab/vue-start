@@ -1,30 +1,25 @@
 <template>
-  <div class="post" v-for="post in posts">
-    <div><strong>Название: </strong> {{post.title}}</div>
-    <div><strong>Описание: </strong> {{post.text}}</div>
+  <div v-for="post in posts">
+    <post-item :text=post.text :title=post.title />
   </div>
 </template>
 
 <script>
+import PostItem from "@/components/PostItem";
+
 export default {
   props: {
     posts: {
       type: Array,
       required: true
-    }
+    },
   },
-  data() {
-    return {
-
-    }
+  components: {
+    PostItem
   }
 }
 </script>
 
 <style scoped>
-  .post {
-    background: azure;
-    border: 1px seagreen solid;
-    padding: 15px;
-  }
+
 </style>
