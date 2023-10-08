@@ -1,8 +1,19 @@
 # vue-start
 
-Главная магия фреймворка - способность фреймворка [РЕАГИРОВАТЬ](https://www.youtube.com/watch?v=LV235z6qOUI) на изменение данных (а не обновлять ручками setState).
+## Project setup
+```
+yarn install
+```
 
-Больше не надо заботиться о том, что не надо думать о том, когда и как менять данные.
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
-Во Vue данные будут засинканы, в реальности будут нюансы, когда реактивность не срабатывает.
+### Compiles and minifies for production
+```
+yarn build
+```
 
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
