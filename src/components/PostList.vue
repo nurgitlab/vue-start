@@ -1,6 +1,6 @@
 <template>
   <div v-for="post in posts">
-    <post-item :text=post.text :title=post.title />
+    <post-item :post="post" @deletePost="(el) => $emit('deletePost', el)"/>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
   },
   components: {
     PostItem
-  }
+  },
+  emits: ['deletePost']
 }
 </script>
 

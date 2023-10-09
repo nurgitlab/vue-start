@@ -1,22 +1,20 @@
 <template>
   <div class="post">
-    <div><strong>Название: </strong> {{title}}</div>
-    <div><strong>Описание: </strong> {{text}}</div>
+    <div><strong>Название: </strong> {{post.title}}</div>
+    <div><strong>Описание: </strong> {{post.text}}</div>
+    <button @click="$emit('deletePost', post.id)">Удалить пост</button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    text: {
-      type: String,
-      required: true,
-    },
-  }
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  emits: ['deletePost'],
 }
 </script>
 
