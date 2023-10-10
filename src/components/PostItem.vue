@@ -2,7 +2,9 @@
   <div class="post">
     <div><strong>Название: </strong> {{post.title}}</div>
     <div><strong>Описание: </strong> {{post.text}}</div>
-    <button @click="$emit('deletePost', post.id)">Удалить пост</button>
+    <MiddleButton @click="$emit('deletePost', post.id)">
+      Удалить пост
+    </MiddleButton>
   </div>
 </template>
 
