@@ -3,10 +3,15 @@
     <post-form
         @create="createPost"
     />
-    <post-list
-        :posts="posts"
-        @deletePost="removePost"
-    />
+    <h1 v-if="posts.length === 0" style="color: red">
+      Постов нет!
+    </h1>
+    <div v-else>
+      <post-list
+          :posts="posts"
+          @deletePost="removePost"
+      />
+    </div>
   </div>
 </template>
 
@@ -47,6 +52,4 @@ export default {
 .app {
   padding: 20px;
 }
-
-
 </style>
