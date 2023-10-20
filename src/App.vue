@@ -1,8 +1,14 @@
 <template>
   <div class="app">
-    <post-form
-        @create="createPost"
-    />
+    <h1>Страница с постами</h1>
+    <middle-button @click="showDialog">
+      Создать пост
+    </middle-button>
+    <MyDialog v-model:show="dialogVisible" >
+      <post-form
+          @create="createPost"
+      />
+    </MyDialog>
     <h1 v-if="posts.length === 0" style="color: red">
       Постов нет!
     </h1>
@@ -18,9 +24,13 @@
 <script>
 import PostList from "@/components/PostList";
 import PostForm from "@/components/PostForm"
+import MyDialog from "@/components/UI/MyDialog";
+import MiddleButton from "@/components/UI/MiddleButton";
+
 export default {
   components: {
-    PostForm, PostList
+    MiddleButton,
+    PostForm, PostList, MyDialog,
   },
   data() {
     return {
@@ -29,14 +39,19 @@ export default {
         {id: 2, title: 'Angular', text: 'какой то фреймворк от гугла'},
         {id: 3, title: 'React', text: 'Самый популярный фреймворк от фейсбука'},
       ],
+      dialogVisible: false
     }
   },
   methods: {
     createPost (post) {
       this.posts.push(post)
+      this.dialogVisible = false
     },
     removePost (id) {
       this.posts = this.posts.filter(post => post.id !== id)
+    },
+    showDialog() {
+      this.dialogVisible = true
     }
   }
 }
