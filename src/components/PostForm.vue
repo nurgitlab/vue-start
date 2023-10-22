@@ -5,7 +5,7 @@
         placeholder="Название поста"
     />
     <CustomInput
-        v-model:value="post.text"
+        v-model:value="post.body"
         placeholder="Описание"
     />
     <MiddleButton
@@ -22,7 +22,7 @@
       return {
         post: {
           title: '',
-          text: ''
+          body: ''
         }
       }
     },
@@ -32,7 +32,7 @@
         this.$emit('create', this.post)
         this.post = {
           title: '',
-          text: ''
+          body: ''
         }
       }
     }

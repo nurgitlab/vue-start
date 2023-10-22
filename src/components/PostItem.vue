@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <div><strong>Название: </strong> {{post.title}}</div>
-    <div><strong>Описание: </strong> {{post.text}}</div>
+    <div><strong>Описание: </strong> {{post.body}}</div>
     <MiddleButton @click="$emit('deletePost', post.id)">
       Удалить пост
     </MiddleButton>
