@@ -1,25 +1,25 @@
 <template>
   <div class="app">
-    <h1>Страница с постами</h1>
+    <h1> Страница с постами </h1>
 
-    <middle-button @click="showDialog">
-      Создать пост
-    </middle-button>
+    <div class="app__btns">
+      <middle-button @click="showDialog"> Создать пост </middle-button>
 
-    <middle-button @click="fetchUsers" v-model="isLoading">
-      Получить данные!
-    </middle-button>
+      <my-select
+          v-model="selectedSort"
+          :options="sortOptions"
+      >
+
+      </my-select>
+    </div>
+
     <MyDialog v-model:show="dialogVisible">
-      <post-form
-          @create="createPost"
-      />
+      <post-form @create="createPost"/>
     </MyDialog>
-    <h1 v-if="posts.length === 0 && isLoading === false" style="color: red">
-      Постов нет!
-    </h1>
-    <h2 v-if="isLoading">
-      Идёт загрузка!
-    </h2>
+
+    <h1 v-if="posts.length === 0 && isLoading === false" style="color: red"> Постов нет! </h1>
+    <h2 v-if="isLoading"> Идёт загрузка! </h2>
+
     <div v-else>
       <post-list
           :posts="posts"
@@ -30,22 +30,32 @@
 </template>
 
 <script>
+import axios from "axios";
+
 import PostList from "@/components/PostList";
 import PostForm from "@/components/PostForm"
 import MyDialog from "@/components/UI/MyDialog";
 import MiddleButton from "@/components/UI/MiddleButton";
-import axios from "axios";
+import MySelect from "@/components/UI/MySelect";
 
 export default {
   components: {
+    MySelect,
     MiddleButton,
-    PostForm, PostList, MyDialog,
+    PostForm,
+    PostList,
+    MyDialog,
   },
   data() {
     return {
       posts: [],
       dialogVisible: false,
       isLoading: false,
+      selectedSort: '',
+      sortOptions: [
+        {value: 'title', name: 'По названию'},
+        {value: 'body', name: 'По содержимому'},
+      ]
     }
   },
   methods: {
@@ -62,9 +72,7 @@ export default {
     async fetchUsers () {
       this.isLoading = true
       try {
-        const response = await axios.get(
-            'https://jsonplaceholder.typicode.com/posts?_limit=5'
-        )
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5')
         setTimeout(() => {
           this.posts = response.data
           console.log(response)
@@ -91,5 +99,10 @@ export default {
 
 .app {
   padding: 20px;
+}
+
+.app__btns {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
