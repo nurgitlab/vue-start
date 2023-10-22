@@ -86,6 +86,14 @@ export default {
   },
   mounted() {
     this.fetchUsers()
+  },
+  watch: {
+    selectedSort (newValue) {
+      console.log(newValue)
+    },
+    dialogVisible (newValue) {
+      console.log(newValue)
+    }
   }
 }
 </script>
