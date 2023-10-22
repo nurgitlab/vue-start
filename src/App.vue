@@ -87,14 +87,11 @@ export default {
   mounted() {
     this.fetchUsers()
   },
-  watch: {
-    selectedSort (newValue) {
-      console.log(newValue)
+  computed: {
+    sortedPosts() {
+      return [...this.posts].sort((a, b) => a[this.selectedSort]?.localeCompare(b[this.selectedSort]))
     },
-    dialogVisible (newValue) {
-      console.log(newValue)
-    }
-  }
+  },
 }
 </script>
 
